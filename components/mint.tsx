@@ -1,15 +1,9 @@
 import { useState, SyntheticEvent } from "react";
 import Link from "next/link";
-import Image from 'next/image';
 import {    useWallet   } from '@suiet/wallet-kit';
 import { TransactionBlock } from "@mysten/sui.js";
 import axios from "axios";
 //import { toast } from "react-toastify";
-
-type PromptForm = {
-    prompt: string;
-  };
-
 
 export default function Mint() {
   
@@ -92,7 +86,7 @@ export default function Mint() {
       };
 
      function createMintNftTxnBlock(description:string , imgUrl:string) {
-         // define a programmable transaction block
+         console.log("txb")//0define a programmable transaction block
          const txb = new TransactionBlock();
       
         // note that this is a devnet contract address
@@ -110,7 +104,8 @@ export default function Mint() {
            arguments: [
              txb.pure(nftName),
              txb.pure(nftDescription),
-           ],
+             txb.pure(nftImgUrl)
+           ]
          });
       
          return txb;
@@ -126,8 +121,8 @@ export default function Mint() {
           console.log("call")
           setMintingStatus("progress");
 
-          const txb = createMintNftTxnBlock(description , image);
-          
+          var txb = createMintNftTxnBlock(description , image)
+
           try {
             // call the wallet to sign and execute the transaction
             const res = await wallet.signAndExecuteTransactionBlock({
@@ -175,11 +170,11 @@ export default function Mint() {
           <div className="flex flex-col gap-4">
             {generateStatus === "generated" && image ? (
               <div className="flex flex-col gap-4">
-                <Image
+                <img
                   src={`${image}`}
                   alt="generated image"
                   className="h-64 md:h-80 rounded-lg"
-                />
+                ></img>
               </div>
             ) : (
               <div className="relative mb-4 w-full h-64 md:h-80 bg-gray-800/30 rounded-lg ">
@@ -197,7 +192,7 @@ export default function Mint() {
   
           <div className="flex flex-col gap-2">
             {/* <h1 className="text-2xl font-semibold mt-5">The space collection</h1> */}
-            <p className="text-lg">watch</p>
+            <p className="text-lg">watch("prompt")</p>
             <p className="font-semibold text-xl mt-3">Details</p>
             <div className="flex flex-col gap-2">
               <div className="flex items-center justify-between">

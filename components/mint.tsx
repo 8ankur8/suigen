@@ -1,8 +1,8 @@
 import { useState, SyntheticEvent } from "react";
 import Link from "next/link";
+import Image from 'next/image';
 import {    useWallet   } from '@suiet/wallet-kit';
 import { TransactionBlock } from "@mysten/sui.js";
-import Spinner from 'react-bootstrap/Spinner';
 import axios from "axios";
 //import { toast } from "react-toastify";
 
@@ -175,11 +175,11 @@ export default function Mint() {
           <div className="flex flex-col gap-4">
             {generateStatus === "generated" && image ? (
               <div className="flex flex-col gap-4">
-                <img
+                <Image
                   src={`${image}`}
                   alt="generated image"
                   className="h-64 md:h-80 rounded-lg"
-                ></img>
+                />
               </div>
             ) : (
               <div className="relative mb-4 w-full h-64 md:h-80 bg-gray-800/30 rounded-lg ">

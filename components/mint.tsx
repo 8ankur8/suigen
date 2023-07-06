@@ -197,7 +197,7 @@ export default function Mint() {
   
           <div className="flex flex-col gap-2">
             {/* <h1 className="text-2xl font-semibold mt-5">The space collection</h1> */}
-            <p className="text-lg">watch("prompt")</p>
+            <p className="text-lg">watch</p>
             <p className="font-semibold text-xl mt-3">Details</p>
             <div className="flex flex-col gap-2">
               <div className="flex items-center justify-between">
